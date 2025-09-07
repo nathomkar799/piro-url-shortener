@@ -147,8 +147,8 @@
             <tr class="<%= latest === url.shortId ? 'latest' : '' %>">
               <td><%= index + 1 %></td>
               <td>
-                <a href="/url/<%= url.shortId %>" target="_blank">
-                  http://piro/<%= url.shortId %>
+                <a href="<%= baseURL %>/url/<%= url.shortId %>" target="_blank">
+                  <%= baseURL %>/url/<%= url.shortId %>
                 </a>
               </td>
               <td>
@@ -158,7 +158,7 @@
               </td>
               <td><%= url.visitHistory.length %></td>
               <td>
-                <button class="copy-btn" onclick="copyToClipboard(this, 'http://localhost:8001/url/<%= url.shortId %>')">
+                <button class="copy-btn" onclick="copyToClipboard(this, '<%= baseURL %>/url/<%= url.shortId %>')">
                   Copy
                   <span class="tooltip">Copied!</span>
                 </button>
@@ -176,7 +176,6 @@
     function copyToClipboard(btn, text) {
       navigator.clipboard.writeText(text)
         .then(() => {
-          // show tooltip
           btn.classList.add('show-tooltip');
           setTimeout(() => btn.classList.remove('show-tooltip'), 1000);
         })
