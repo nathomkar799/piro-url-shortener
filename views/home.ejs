@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home Page</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      margin: 20px;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    form {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+      gap: 10px;
+    }
+
+    input[type="text"] {
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      width: 300px;
+    }
+
+    button {
+      padding: 8px 14px;
+      border: none;
+      border-radius: 6px;
+      background-color: #0078d7;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #005ea0;
+    }
+
+    table {
+      width: 90%;
+      margin: 0 auto;
+      border-collapse: collapse;
+      background: white;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 12px 15px;
+      text-align: center;
+      border-bottom: 1px solid #eee;
+    }
+
+    th {
+      background-color: #0078d7;
+      color: white;
+      font-weight: 600;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f4f8fc;
+    }
+
+    tr:hover {
+      background-color: #eaf2fb;
+    }
+
+    /* Highlight latest row */
+    .latest {
+      background-color: #fff3cd !important;
+    }
+
+    .copy-btn {
+      margin-left: 5px;
+      padding: 3px 6px;
+      font-size: 12px;
+      cursor: pointer;
+      border: 1px solid #0078d7;
+      background-color: #fff;
+      color: #0078d7;
+      border-radius: 4px;
+      position: relative;
+      transition: 0.3s;
+    }
+
+    .copy-btn:hover {
+      background-color: #0078d7;
+      color: white;
+    }
+
+    /* Tooltip */
+    .tooltip {
+      visibility: hidden;
+      width: 60px;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      border-radius: 4px;
+      padding: 2px 5px;
+      position: absolute;
+      z-index: 1;
+      top: -25px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 10px;
+    }
+
+    .copy-btn.show-tooltip .tooltip {
+      visibility: visible;
+    }
+  </style>
+</head>
+<body>
+  <h1>URL Shortener</h1>
+
+  <div>
+    <form method="POST" action="/url">
+      <input type="text" name="url" placeholder="https://www.example.com" required>
+      <button type="submit">Generate</button>
+    </form>
+  </div>
+
+  <div>
+    <% if (urls && urls.length > 0) { %>
+      <table>
+        <thead>
+          <tr>
+            <th>S. No</th>
+            <th>Short URL</th>
+            <th>Original URL</th>
+            <th>Clicks</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% urls.forEach((url, index) => { %>
+            <tr class="<%= latest === url.shortId ? 'latest' : '' %>">
+              <td><%= index + 1 %></td>
+              <td>
+                <a href="/url/<%= url.shortId %>" target="_blank">
+                  http://piro/<%= url.shortId %>
+                </a>
+              </td>
+              <td>
+                <a href="<%= url.redirectURL %>" target="_blank">
+                  <%= url.redirectURL %>
+                </a>
+              </td>
+              <td><%= url.visitHistory.length %></td>
+              <td>
+                <button class="copy-btn" onclick="copyToClipboard(this, 'http://localhost:8001/url/<%= url.shortId %>')">
+                  Copy
+                  <span class="tooltip">Copied!</span>
+                </button>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    <% } else { %>
+      <p style="text-align:center;">No URLs generated yet.</p>
+    <% } %>
+  </div>
+
+  <script>
+    function copyToClipboard(btn, text) {
+      navigator.clipboard.writeText(text)
+        .then(() => {
+          // show tooltip
+          btn.classList.add('show-tooltip');
+          setTimeout(() => btn.classList.remove('show-tooltip'), 1000);
+        })
+        .catch(err => console.error("Failed to copy!", err));
+    }
+  </script>
+</body>
+</html>
