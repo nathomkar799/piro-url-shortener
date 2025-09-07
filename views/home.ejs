@@ -3,62 +3,99 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home Page</title>
+  <title>Dashboard | URL Shortener</title>
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/84/84380.png" type="image/png">
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
       font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      margin: 20px;
-      background-color: #f9f9f9;
+      min-height: 100vh;
+      background: linear-gradient(135deg, rgba(0,120,215,0.6), rgba(0,200,150,0.6));
+      backdrop-filter: blur(8px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px 20px;
       color: #333;
     }
 
-    h1 {
+    .branding {
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 25px;
     }
 
-    form {
+    .branding h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #0078d7;
+    }
+
+    .branding p {
+      font-size: 13px;
+      color: #444;
+      margin-top: 4px;
+      letter-spacing: 0.3px;
+    }
+
+    .url-form {
       display: flex;
       justify-content: center;
-      margin-bottom: 30px;
       gap: 10px;
+      margin-bottom: 30px;
+      background: rgba(255,255,255,0.9);
+      padding: 15px 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      width: 100%;
+      max-width: 600px;
     }
 
-    input[type="text"] {
-      padding: 8px 12px;
+    .url-form input[type="text"] {
+      flex: 1;
+      padding: 12px 14px;
       border: 1px solid #ccc;
-      border-radius: 6px;
-      width: 300px;
+      border-radius: 8px;
+      outline: none;
+      transition: 0.3s;
     }
 
-    button {
-      padding: 8px 14px;
+    .url-form input[type="text"]:focus {
+      border-color: #00bfa5;
+      box-shadow: 0 0 6px rgba(0,191,165,0.4);
+    }
+
+    .url-form button {
+      padding: 12px 18px;
       border: none;
-      border-radius: 6px;
-      background-color: #0078d7;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #0078d7, #00bfa5);
       color: white;
       cursor: pointer;
-      transition: background 0.3s;
+      transition: transform 0.2s, box-shadow 0.3s;
     }
 
-    button:hover {
-      background-color: #005ea0;
+    .url-form button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
     }
 
     table {
-      width: 90%;
+      width: 95%;
+      max-width: 900px;
       margin: 0 auto;
       border-collapse: collapse;
-      background: white;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      border-radius: 8px;
+      background: rgba(255,255,255,0.95);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      border-radius: 12px;
       overflow: hidden;
     }
 
     th, td {
-      padding: 12px 15px;
+      padding: 14px 16px;
       text-align: center;
       border-bottom: 1px solid #eee;
+      font-size: 14px;
     }
 
     th {
@@ -67,28 +104,20 @@
       font-weight: 600;
     }
 
-    tr:nth-child(even) {
-      background-color: #f4f8fc;
-    }
+    tr:nth-child(even) { background-color: #f4f8fc; }
+    tr:hover { background-color: #eaf2fb; }
 
-    tr:hover {
-      background-color: #eaf2fb;
-    }
-
-    /* Highlight latest row */
-    .latest {
-      background-color: #fff3cd !important;
-    }
+    .latest { background-color: #fff3cd !important; }
 
     .copy-btn {
       margin-left: 5px;
-      padding: 3px 6px;
+      padding: 6px 10px;
       font-size: 12px;
       cursor: pointer;
       border: 1px solid #0078d7;
       background-color: #fff;
       color: #0078d7;
-      border-radius: 4px;
+      border-radius: 6px;
       position: relative;
       transition: 0.3s;
     }
@@ -98,7 +127,6 @@
       color: white;
     }
 
-    /* Tooltip */
     .tooltip {
       visibility: hidden;
       width: 60px;
@@ -109,22 +137,30 @@
       padding: 2px 5px;
       position: absolute;
       z-index: 1;
-      top: -25px;
+      top: -28px;
       left: 50%;
       transform: translateX(-50%);
       font-size: 10px;
     }
 
-    .copy-btn.show-tooltip .tooltip {
-      visibility: visible;
+    .copy-btn.show-tooltip .tooltip { visibility: visible; }
+
+    .no-urls {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #555;
+      text-align: center;
     }
   </style>
 </head>
 <body>
-  <h1>URL Shortener</h1>
+  <div class="branding">
+    <h1>🔗 URL Shortener</h1>
+    <p>Generate personal URLs that only you have</p>
+  </div>
 
-  <div>
-    <form method="POST" action="/url">
+  <div class="url-form">
+    <form method="POST" action="/url" style="display:flex; width:100%; gap:10px;">
       <input type="text" name="url" placeholder="https://www.example.com" required>
       <button type="submit">Generate</button>
     </form>
@@ -168,7 +204,7 @@
         </tbody>
       </table>
     <% } else { %>
-      <p style="text-align:center;">No URLs generated yet.</p>
+      <p class="no-urls">No URLs generated yet.</p>
     <% } %>
   </div>
 

@@ -3,11 +3,11 @@ const User = require('../models/user')
 const { setUser } = require('../service/auth')
 
 async function handleUserSignup(req,res) {
-    const {name, email, password } = req.body;
+    const {name, username, password } = req.body;
     console.log(req.body);
     await User.create({
         name,
-        email,
+        username,
         password,
     });
     
@@ -15,9 +15,11 @@ async function handleUserSignup(req,res) {
 }
 
 async function handleUserLogin(req,res) {
-    const { email, password } = req.body;
-    const user = await User.findOne({email, password});
-    // console.log("User", user);
+    // console.log("hello");
+    
+    const { username, password } = req.body;
+    const user = await User.findOne({username, password});
+    console.log("User", user);
     if ( !user ) 
         return res.render("login", {
         error : "invalid Username or Password",

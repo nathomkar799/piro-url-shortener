@@ -11,7 +11,7 @@ const userRoute = require("./routes/user");
 
 const app = express();
 const PORT = process.env.PORT || 8001;
-const mongoURI = process.env.ATLAS_URL;
+const mongoURI = process.env.atlas_url;
 
 connectToMongoDB(mongoURI)
   .then(() => console.log("✅ MongoDB connected!"))
