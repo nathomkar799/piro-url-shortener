@@ -4,7 +4,6 @@
 ![Express.js](https://img.shields.io/badge/Express.js-4.x-blue)
 ![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-brightgreen)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow)
-![GitHub Repo Stars](https://img.shields.io/github/stars/yourusername/url-shortener?style=social)
 
 A **modern and user-friendly URL shortener** built with **Node.js**, **Express.js**, and **MongoDB**.  
 Easily generate short links for long URLs, track clicks, and share them effortlessly. Ideal for personal use or as a learning project for web developers.
