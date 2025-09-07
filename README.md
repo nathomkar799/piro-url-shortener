@@ -17,12 +17,14 @@ A simple and modern URL shortener built with **Node.js**, **Express.js**, and **
 
 ## Screenshots
 
-![Home Page](screenshots\Homepage-URL-Shortener.jpg)  
+![Home Page](screenshots/Homepage-URL-Shortener.jpg)  
 *Home page showing URL input and list of generated URLs.*
-![Login Page](screenshots\Login-URL-Shortener.jpg)
+
+![Login Page](screenshots/Login-URL-Shortener.jpg)
 *Login page showing username input and password input.*
-![Signup Page](screenshots\Signup-URL-Shortener.jpg)
-*Login page showing username input and password input.*
+
+![Signup Page](screenshots/Signup-URL-Shortener.jpg)
+*Signup page showing name input, username input and password input.*
 ---
 
 ## Tech Stack
@@ -40,7 +42,6 @@ A simple and modern URL shortener built with **Node.js**, **Express.js**, and **
 ```bash
 git clone https://github.com/yourusername/url-shortener.git
 cd url-shortener
-```bash
 
 
 
