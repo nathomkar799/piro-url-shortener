@@ -1,47 +1,49 @@
-# URL Shortener
+# 🔗 URL Shortener
 
-A simple and modern URL shortener built with **Node.js**, **Express.js**, and **MongoDB**. This project allows users to generate short URLs for long links, track the number of clicks, and copy/share URLs easily.
+![Node.js](https://img.shields.io/badge/Node.js-14.x-green)
+![Express.js](https://img.shields.io/badge/Express.js-4.x-blue)
+![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-brightgreen)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow)
+![GitHub Repo Stars](https://img.shields.io/github/stars/yourusername/url-shortener?style=social)
 
----
-
-## Features
-
-- Generate short URLs for any valid link.
-- Keep track of the number of clicks (visit history).
-- Copy short URLs with one click and tooltip feedback.
-- Highlight the latest generated URL.
-- Works for logged-in users or anonymous users.
-- Responsive and clean UI with HTML, CSS, and EJS templates.
+A **modern and user-friendly URL shortener** built with **Node.js**, **Express.js**, and **MongoDB**.  
+Easily generate short links for long URLs, track clicks, and share them effortlessly. Ideal for personal use or as a learning project for web developers.
 
 ---
 
-## Screenshots
+## 🚀 Features
 
+- Generate **short URLs** for any valid link.  
+- Track the **number of clicks** (visit history).  
+- **Copy URLs** with a single click and tooltip feedback.  
+- Highlight the **latest generated URL** for easy visibility.  
+- Supports **both logged-in and anonymous users**.  
+- **Responsive and clean UI** built with HTML, CSS, and EJS templates.  
+
+---
+
+## 🖼️ Screenshots
+
+**Home Page:**  
 ![Home Page](screenshots/Homepage-URL-Shortener.jpg)  
-*Home page showing URL input and list of generated URLs.*
+*Enter URLs and view generated short links.*
 
-![Login Page](screenshots/Login-URL-Shortener.jpg)
-*Login page showing username input and password input.*
+**Login Page:**  
+![Login Page](screenshots/Login-URL-Shortener.jpg)  
+*Login using your username and password.*
 
-![Signup Page](screenshots/Signup-URL-Shortener.jpg)
-*Signup page showing name input, username input and password input.*
----
-
-## Tech Stack
-
-- **Backend:** Node.js, Express.js
-- **Database:** MongoDB (Atlas or local)
-- **Templating:** EJS
-- **Frontend:** HTML, CSS, JavaScript
-- **Session Management:** In-memory map (for demo purposes)
+**Signup Page:**  
+![Signup Page](screenshots/Signup-URL-Shortener.jpg)  
+*Quick registration with name, username, and password.*
 
 ---
 
- **Clone the repository:**
+## 🛠️ Tech Stack
 
-```bash
-git clone https://github.com/yourusername/url-shortener.git
-cd url-shortener
+- **Backend:** Node.js, Express.js  
+- **Database:** MongoDB (Atlas or local)  
+- **Templating Engine:** EJS  
+- **Frontend:** HTML, CSS, JavaScript  
+- **Session Management:** In-memory map (for demo purposes)  
 
-
-
+---
